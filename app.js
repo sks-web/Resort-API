@@ -49,7 +49,7 @@ app.use(upload.single("image"), resortRouter);
 
 // Database Connection
 mongoose
-  .connect("mongodb://localhost:27017/resortDatabase")
+  .connect(process.evn.MONGOLAB_URI)
   .then((response) => {
     console.log("Database Connected");
     // initialise servers
