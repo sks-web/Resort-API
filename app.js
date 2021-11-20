@@ -15,6 +15,8 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+const MONGODB_URI =
+  "mongodb+srv://admin:admin@cluster0.lweku.mongodb.net/resortDB?retryWrites=true&w=majority";
 // storage configuration for file upload
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -49,7 +51,7 @@ app.use(upload.single("image"), resortRouter);
 
 // Database Connection
 mongoose
-  .connect(process.evn.MONGOLAB_URI)
+  .connect(MONGODB_URI)
   .then((response) => {
     console.log("Database Connected");
     // initialise servers
