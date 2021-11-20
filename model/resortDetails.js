@@ -16,6 +16,10 @@ const resortSchema = new Schema({
       type: String,
       required: true,
     },
+    mapLocation: {
+      lat: { type: Number, required: true },
+      lon: { type: Number, required: true },
+    },
     city: {
       type: String,
       required: true,
@@ -30,6 +34,7 @@ const resortSchema = new Schema({
     },
   },
   image: [String],
+  feedback: [{ type: Schema.Types.ObjectId, ref: "ResortFeedback" }],
 });
 
 module.exports = mongoose.model("ResortDetails", resortSchema);

@@ -13,7 +13,7 @@ const app = express();
 
 app.use(express.static("public"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 
 // storage configuration for file upload
 const storage = multer.diskStorage({
@@ -58,6 +58,7 @@ mongoose
     io.on("connection", (soc) => {
       soc.on("chat", (message) => {
         console.log(message);
+        io.emit("chat", message);
       });
       console.log("user connected");
     });
